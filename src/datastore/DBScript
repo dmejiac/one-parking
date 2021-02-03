@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[Datos de Parqueo] (
+CREATE TABLE [dbo].[DatosdeParqueo] (
     [ParqueoID]             INT           NOT NULL,
     [Descripcion]           VARCHAR (50)  NULL,
     [Ubicacion]             VARCHAR (100) NULL,
@@ -6,17 +6,17 @@ CREATE TABLE [dbo].[Datos de Parqueo] (
     PRIMARY KEY CLUSTERED ([ParqueoID] ASC)
 );
 
-CREATE TABLE [dbo].[Datos de Estacionamiento] (
+CREATE TABLE [dbo].[DatosdeEstacionamiento] (
     [EstacionamientoID] INT NOT NULL,
     [Numero]            INT NULL,
     [UbicacionID]       INT NULL,
     [Reservado]         BIT NULL,
     [Disponibilidad]    BIT NULL,
     PRIMARY KEY CLUSTERED ([EstacionamientoID] ASC),
-    FOREIGN KEY ([UbicacionID]) REFERENCES [dbo].[Datos de Parqueo] ([ParqueoID])
+    FOREIGN KEY ([UbicacionID]) REFERENCES [dbo].[DatosdeParqueo]([ParqueoID])
 );
 
-CREATE TABLE [dbo].[Datos de Solicitud] (
+CREATE TABLE [dbo].[DatosdeSolicitud] (
     [SolicitudID]     INT           NOT NULL,
     [Beneficiario]    VARCHAR (100) NULL,
     [Identifiacion]   INT           NULL,
@@ -29,7 +29,7 @@ CREATE TABLE [dbo].[Datos de Solicitud] (
     PRIMARY KEY CLUSTERED ([SolicitudID] ASC)
 );
 
-CREATE TABLE [dbo].[Datos de Vehiculo] (
+CREATE TABLE [dbo].[DatosdeVehiculo] (
     [VehiculoID]        INT          NOT NULL,
     [SolicitudID]       INT          NULL,
     [EstacionamientoID] INT          NULL,
@@ -38,6 +38,6 @@ CREATE TABLE [dbo].[Datos de Vehiculo] (
     [Color]             VARCHAR (20) NULL,
     [Placa]             VARCHAR (6)  NULL,
     PRIMARY KEY CLUSTERED ([VehiculoID] ASC),
-    FOREIGN KEY ([SolicitudID]) REFERENCES [dbo].[Datos de Solicitud] ([SolicitudID]),
-    FOREIGN KEY ([EstacionamientoID]) REFERENCES [dbo].[Datos de Estacionamiento] ([EstacionamientoID])
+    FOREIGN KEY ([SolicitudID]) REFERENCES [dbo].[DatosdeSolicitud]([SolicitudID]),
+    FOREIGN KEY ([EstacionamientoID]) REFERENCES [dbo].[DatosdeEstacionamiento]([EstacionamientoID])
 );
